@@ -1,0 +1,114 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+#include <string.h>
+
+void intro(void)
+{
+  printf("\n\t\t\t=========================");
+  printf("\n\t\t\t==CONVERSOR DE PALAVRAS==");
+  printf("\n\t\t\t=========================");
+}
+
+int main()
+{
+	setlocale(LC_ALL,"Portuguese");
+  char palavra[100];
+  int i, op, tamanho;
+
+  //Entrada
+  intro();
+  printf("\n\n\t\tInforme a palavra/frase que deseja modificar: \n");
+  fgets(palavra, 100, stdin);
+  fflush(stdin);
+
+  //Processamento
+  do
+  {
+    system("cls");
+    intro();
+    printf("\n\n\t\t\tMenu principal\n");
+    printf("\n\t\t[1] - Converter para letras mai�sculas;\n");
+    printf("\t\t[2] - Converter para letras min�sculas;\n");
+    printf("\t\t[3] - Contar caracteres;\n");
+    printf("\t\t[4] - Escrever caracter por caracter;\n");
+    printf("\t\t[5] - Primeira letra de cada palavra mai�scula;\n");
+    scanf("%d", &op);
+    fflush(stdin);
+
+    switch (op)
+    {
+    case 1:
+      system("cls");
+      intro();
+      printf("\n\nPalavra/frase original:\n");
+      printf("%s", palavra);
+      printf("Palavra/frase modificada:\n");
+      printf("%s", strupr(palavra));
+      printf("\n\nPrecione enter para voltar...");
+      getchar();
+
+      break;
+    case 2:
+      system("cls");
+      intro();
+      printf("\n\nPalavra/frase original:\n");
+      printf("%s", palavra);
+      printf("Palavra/frase modificada:\n");
+      printf("%s", strlwr(palavra));
+      printf("\n\nPrecione enter para voltar...");
+      getchar();
+
+      break;
+    case 3:
+      system("cls");
+      intro();
+      printf("\n\nPalavra/frase original:\n");
+      printf("%s", palavra);
+      printf("Palavra/frase modificada:\n");
+      tamanho = strlen(palavra);
+      printf("%d", tamanho - 1);
+      printf("\n\nPrecione enter para voltar...");
+      getchar();
+      break;
+    case 4:
+      system("cls");
+      intro();
+      printf("\n\nPalavra/frase original:\n");
+      printf("%s", palavra);
+      fflush(stdin);
+      for (i = 0; i < strlen(palavra) - 1; i++)
+      {
+        printf("[%d] - %c\n", i, palavra[i]);
+      }
+      getchar();
+      break;
+
+    case 5:
+      system("cls");
+      intro();
+      printf("\n\nPalavra/frase original:\n");
+      printf("%s", palavra);
+      fflush(stdin);
+      strlwr(palavra);
+
+      for (i = 0; i < strlen(palavra) + 1; i++)
+      {
+        if (i == 0 || palavra[i - 1] == ' ')
+          palavra[i] = toupper(palavra[i]);
+        else
+          palavra[i] = palavra[i];
+      }
+
+      printf("Frase: %s\n", palavra);
+      getchar();
+    default:
+      intro();
+      printf("\n\nC�digo inv�lido\n");
+      break;
+    }
+  } while (op != 0);
+
+  getchar();
+  return (0);
+}
